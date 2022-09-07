@@ -1,4 +1,5 @@
 class Solution:
+#     Flood fill or graph expansion
     def shortestBridge(self, grid: List[List[int]]) -> int:
         def paint(grid,i,j):
             if not 0<=i<len(grid) or not 0<=j<len(grid[0]):
@@ -21,6 +22,7 @@ class Solution:
         
         # print(grid)
         def expand(grid,i,j,n):
+            # print(i,j)
             if not 0<=i<len(grid) or not 0<=j<len(grid[0]):
                 return   
             if grid[i][j]==0:
@@ -31,9 +33,11 @@ class Solution:
         while True:
             for i in range(len(grid)):
                 for j in range(len(grid[0])):
+                    # print('in',i,j,n)
                     if grid[i][j]==n and (expand(grid,i-1,j,n) or expand(grid,i+1,j,n) or expand(grid,i,j+1,n) or\
                                           expand(grid,i,j-1,n)):
                         return n-2
+                    # print(grid)
             n += 1
 #         def check_island(i,j):
 #             # print(i,j)
