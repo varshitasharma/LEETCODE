@@ -4,18 +4,17 @@ class Solution(object):
         :type heights: List[int]
         :rtype: int
         """
-        length, max_area = len(heights), 0
-        increasing_stack = [-1]
-        for i in range(length+1):
-            while(increasing_stack[-1] != -1 and (i == length or heights[increasing_stack[-1]] > heights[i])):
-                curr_height = heights[increasing_stack[-1]]
-                increasing_stack.pop()
-                left_smallest, right_smallest = increasing_stack[-1] + 1 , i-1
-                max_area = max(max_area, (right_smallest - left_smallest +1)*curr_height)
-                            
-            increasing_stack.append(i)
-        return max_area
-            
+        heights.append(0)
+        stack = [-1]
+        ans = 0
+        for i in range(len(heights)):
+            while heights[i] < heights[stack[-1]]:
+                height = heights[stack.pop()]
+                width = i - stack[-1] - 1
+                ans = max(ans, height * width)
+            stack.append(i)
+        heights.pop()
+        return ans
             
         
         
