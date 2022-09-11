@@ -24,7 +24,6 @@ class Solution(object):
                         count+=1 
                 start+=1
                 end+=1
-            # print(letter_count, )
         return False
         
         
