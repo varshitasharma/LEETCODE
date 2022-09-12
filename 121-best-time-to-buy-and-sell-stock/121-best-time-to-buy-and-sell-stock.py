@@ -4,8 +4,8 @@ class Solution(object):
         :type prices: List[int]
         :rtype: int
         """
-        dp, minPrice = [0]*len(prices), prices[0]
-        for i, price in enumerate(prices):
-            minPrice = min( minPrice, price)
-            if i>0: dp[i] = max(dp[i-1], price-minPrice)
-        return dp[-1]
+        ans, minPrice = 0, prices[0]
+        for i in range(len(prices)): 
+            ans = max(ans, prices[i]-minPrice)
+            minPrice = min( minPrice, prices[i])
+        return ans
