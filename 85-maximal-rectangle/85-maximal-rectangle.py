@@ -36,5 +36,4 @@ class Solution:
                     width = i - 1 - stack[-1]
                     maxArea = max(maxArea, h*width)
                 stack.append(i)
-                
         return maxArea
