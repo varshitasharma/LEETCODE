@@ -8,5 +8,4 @@ class Solution:
                 if i>0 and j>0:
                     if matrix[i][j]: matrix[i][j] = min(matrix[i-1][j], matrix[i-1][j-1], matrix[i][j-1]) +1
                 maxSide = max(maxSide, matrix[i][j])
-        print(matrix)
         return maxSide**2
