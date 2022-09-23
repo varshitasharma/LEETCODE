@@ -8,7 +8,6 @@ class Solution:
         for i in range(l-2, -1,-1):
             right[i] = right[i+1]*nums[i]
         # print(left, right)
-        for k in range(1,l-1):
-            ans[k] = left[k-1]*right[k+1] 
+        for k in range(1,l-1): ans[k] = left[k-1]*right[k+1] 
         ans[0], ans[l-1] = right[1], left[l-2]
         return ans
