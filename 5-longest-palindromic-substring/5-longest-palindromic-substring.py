@@ -1,5 +1,6 @@
 class Solution:
-    '''O(N^2) with O(1) space'''
+    '''O(N^2) with O(1) space
+    In total, 2n-1 centers are possible fpr all possible palindromes& to check each it'll take O(N time)'''
     def longestPalindrome(self, s: str) -> str:
         res = ""
         for i in range(len(s)):
@@ -21,7 +22,9 @@ class Solution:
         return s[l+1:r]
     
     
-    '''O(N^2) with O(N*N) space'''
+    '''O(N^2) with O(N*N) space
+    https://leetcode.com/problems/longest-palindromic-substring/discuss/900639/Python-Solution-%3A-with-detailed-explanation-%3A-using-DP'''
+    
 #     def longestPalindrome(self, s):
 #         longest_palindrom = ''
 #         dp = [[0]*len(s) for _ in range(len(s))]
