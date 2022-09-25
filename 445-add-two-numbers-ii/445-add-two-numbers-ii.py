@@ -5,6 +5,7 @@
 #         self.next = next
 class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        '''Without reversing the list'''
         n1, n2 = 0, 0
         curr1, curr2, prev = l1, l2,None
         while(curr1):
@@ -14,6 +15,11 @@ class Solution:
             curr2 =curr2.next
             n2 +=1
         curr1, curr2 = l1, l2
+        
+        # parse both lists
+        # and sum the corresponding positions 
+        # without taking carry into account
+        # 3->3->3 + 7->7 --> 3->10->10 --> 10->10->3
         while(n1>0 and n2>0):
             val = 0
             if n1 >= n2:
@@ -24,17 +30,24 @@ class Solution:
                 val += curr2.val
                 curr2 = curr2.next
                 n2-=1
-            
+             
+            # update the result: add to front
             curr = ListNode(val)
             curr.next = prev
             prev = curr
-        # print(curr)
+            
+         # take the carry into account
+        # to have all elements to be less than 10
+        # 10->10->3 --> 0->1->4 --> 4->1->0
         carry,  prev = 0, None
         while(curr):
             carry, val = divmod(curr.val+carry, 10)
+            # update the result: add to front
             newNode = ListNode(val, prev)
             prev = newNode
+            # move to the next elements in the list
             curr = curr.next
+        # add the last carry
         if carry:
             newNode = ListNode(carry, prev)
         return newNode
