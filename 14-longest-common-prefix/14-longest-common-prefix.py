@@ -1,14 +1,12 @@
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        res = strs[0]
-        for i in range(1,len(strs)):
-            curRes=''
-            for j,k in zip(range(len(res)), range(len(strs[i]))):
-                if res[j] == strs[i][k] :
-                    curRes+=res[j]
-                else: break
-            res = curRes
-                
-            
-        return res
-                    
+        # Storing alphabetically smallest and largest strings, then comparing them both to find longest common subsequence
+        m, M, i = min(strs), max(strs), 0
+        
+        #print(m,M)
+        for i in range(min(len(m),len(M))):
+            if m[i] != M[i]: 
+                break
+            else:
+                i += 1
+        return m[:i]
