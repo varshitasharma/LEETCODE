@@ -15,15 +15,15 @@ candle count:           0  0  0  1  1  1  2  2  2  2   2  2    3   3   3   4   5
         '''
         
         n = len(s)
-        # print('len',n)
         nearLeft, nearRight= [-1]*n,[-1]*n
-        candleCount, res = [0]*n, []
+        candleCount, res = [0]*n, []   #candleCount[i] stores no. of candles till index i
         
-        candle = -1
+        candle = -1   #no candle found yet
         for i in range(n-1,-1,-1):
             if s[i] == '|': 
                 candle = i
             nearRight[i] = candle
+            
         candle, count = -1,0
         for i in range(0,n):
             if s[i] == '|': 
@@ -31,12 +31,11 @@ candle count:           0  0  0  1  1  1  2  2  2  2   2  2    3   3   3   4   5
                 count+=1
             nearLeft[i] = candle
             candleCount[i] = count
-        # print(nearRight, nearLeft, candleCount)
+       
         for a,b in queries:
             left, right = nearRight[a], nearLeft[b]
             if left==-1 or right==-1 or left>=right : res.append(0)
             else: res.append(right-left - (candleCount[right]-candleCount[left]) )
-            
         return res
         
         
