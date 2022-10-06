@@ -8,7 +8,7 @@ class Solution:
         for a,b in queries:
             i = bisect.bisect_left(A, a) # A[i] is the first index from 'a' to its right, where there's a plate
             j = bisect.bisect(A, b) - 1  # A[j] is the first index from 'b' to its left, where there's a plate
-            print(i,j)                  # bisect returns the index where b should be present in A, if b already exists in A, it returns next index to b in A, so we need to do -1 to get the right index
+                          # bisect returns the index where b should be present in A, if b already exists in A, it returns next index to b in A, so we need to do -1 to get the right index
             
             # Let E be, No. of elements between plates at j & i = A[j] - A[i] + 1
             # Let P be, No. of plates between plates at j & i = j-i+1  (Since A stores indices of plates so if there's a plate between i & j, we'll  get it's count by j-i+1)
