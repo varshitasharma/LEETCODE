@@ -3,7 +3,7 @@ class Solution:
         left, right = 0, len(nums)-1
         while(left<=right):
             mid = (left+right)//2
-            print(mid)
+            # print(mid)
             if nums[mid] == target:
                 leftmid = bisect.bisect_left(nums[:mid], target)
                 rightmid = mid + bisect.bisect(nums[mid:], target) -1
