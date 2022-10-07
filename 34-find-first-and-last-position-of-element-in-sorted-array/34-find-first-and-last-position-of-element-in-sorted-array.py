@@ -5,7 +5,9 @@ class Solution:
             mid = (left+right)//2
             # print(mid)
             if nums[mid] == target:
+                #this returns the leftmost index of target using binary search
                 leftmid = bisect.bisect_left(nums[:mid], target)
+                #this returns the rightmost index of target using binary search
                 rightmid = mid + bisect.bisect(nums[mid:], target) -1
                 return [leftmid, rightmid]
             elif nums[mid]>target: right = mid-1
