@@ -1,5 +1,6 @@
 class Solution:
     def candy(self, ratings: List[int]) -> int:
+        '''TC: O(N) , SC: O(N)'''
         n =len(ratings)
         candies = [1]*n
         for i in range(1,n):
@@ -9,7 +10,7 @@ class Solution:
         return sum(candies)
         
         
-        '''O(NlogN)'''
+        '''TC: O(NlogN), SC: O(N)'''
         # n = len(ratings)
         # candies = n
         # candy = [1]*n
