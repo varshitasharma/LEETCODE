@@ -1,5 +1,6 @@
 class Solution:
     def getAncestors(self, n: int, edges: List[List[int]]) -> List[List[int]]:
+        '''O(N^2)'''
         output, adj, indegree = [set() for _ in range(n)], defaultdict(list), [0]*n
         for source, dest in edges: 
             adj[source].append(dest)
