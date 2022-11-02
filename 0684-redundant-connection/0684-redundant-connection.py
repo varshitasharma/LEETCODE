@@ -1,10 +1,10 @@
 class UnionFind:
-    def __init__(self, size):
-        self.root = [i for i in range(size)]
+    def __init__(self):
+        self.root = [i for i in range(1002)]
         # Use a rank array to record the height of each vertex, i.e., the "rank" of each vertex.
         # The initial "rank" of each vertex is 1, because each of them is
         # a standalone vertex with no connection to other vertices.
-        self.rank = [1] * size
+        self.rank = [1] * 10001
 
     # The find function here is the same as that in the disjoint set with path compression.
     def find(self, x):
@@ -31,10 +31,10 @@ class UnionFind:
 
 class Solution:
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
-        n = max([max(x) for x in edges]) 
-        uf = UnionFind(n)
+        # n = max([max(x) for x in edges]) 
+        uf = UnionFind()
         for e1, e2 in edges:
-            if not uf.connected(e1-1,e2-1): uf.union(e1-1,e2-1)
+            if not uf.connected(e1,e2): uf.union(e1,e2)
             else: return [e1,e2]
           
             
