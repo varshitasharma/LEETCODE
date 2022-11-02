@@ -32,13 +32,10 @@ class UnionFind:
 class Solution:
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
         n = max([max(x) for x in edges]) 
-        # print(n)
         uf = UnionFind(n)
-        # print(uf.root)
         for e1, e2 in edges:
             if not uf.connected(e1-1,e2-1): uf.union(e1-1,e2-1)
-            
             else: return [e1,e2]
-            # print(e1,e2)
+          
             
             
