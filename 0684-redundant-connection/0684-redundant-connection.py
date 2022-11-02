@@ -1,41 +1,29 @@
-class UnionFind:
+class DSU(object):
     def __init__(self):
-        self.root = [i for i in range(1002)]
-        # Use a rank array to record the height of each vertex, i.e., the "rank" of each vertex.
-        # The initial "rank" of each vertex is 1, because each of them is
-        # a standalone vertex with no connection to other vertices.
-        self.rank = [1] * 10001
+        self.par = [i for i in range(1002)]
+        self.rnk = [0] * 1001
 
-    # The find function here is the same as that in the disjoint set with path compression.
     def find(self, x):
-        if x == self.root[x]:
-            return x
-        self.root[x] = self.find(self.root[x])
-        return self.root[x]
+        if self.par[x] != x:
+            self.par[x] = self.find(self.par[x])
+        return self.par[x]
 
-    # The union function with union by rank
     def union(self, x, y):
-        rootX = self.find(x)
-        rootY = self.find(y)
-        if rootX != rootY:
-            if self.rank[rootX] > self.rank[rootY]:
-                self.root[rootY] = rootX
-            elif self.rank[rootX] < self.rank[rootY]:
-                self.root[rootX] = rootY
-            else:
-                self.root[rootY] = rootX
-                self.rank[rootX] += 1
+        xr, yr = self.find(x), self.find(y)
+        if xr == yr:
+            return False
+        elif self.rnk[xr] < self.rnk[yr]:
+            self.par[xr] = yr
+        elif self.rnk[xr] > self.rnk[yr]:
+            self.par[yr] = xr
+        else:
+            self.par[yr] = xr
+            self.rnk[xr] += 1
+        return True
 
-    def connected(self, x, y):
-        return self.find(x) == self.find(y)
-
-class Solution:
-    def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
-        # n = max([max(x) for x in edges]) 
-        uf = UnionFind()
-        for e1, e2 in edges:
-            if not uf.connected(e1,e2): uf.union(e1,e2)
-            else: return [e1,e2]
-          
-            
-            
+class Solution(object):
+    def findRedundantConnection(self, edges):
+        dsu = DSU()
+        for edge in edges:
+            if not dsu.union(*edge):
+                return edge
