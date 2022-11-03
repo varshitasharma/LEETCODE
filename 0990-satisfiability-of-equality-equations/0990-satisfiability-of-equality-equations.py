@@ -1,6 +1,6 @@
 class Solution:
     def union(self, x, y):
-        self.root[self.find(y)] = self.find(self.find(x))
+        self.root[self.find(y)] =self.find(x)
     
     def find(self, x):
         while(self.root[x] != x):
