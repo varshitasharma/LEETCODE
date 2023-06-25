@@ -6,9 +6,9 @@ class Solution:
 		first, second =arr[0], -1
 		for num in arr:
 		    if num>first: 
-		        first, second = num, first
-	        elif num==first: pass
-		    elif num>second: second = num
+		      first, second= num,first
+	       # elif num==first: pass
+		    elif num>second and num!=first : second = num
 	    return second
 
 
